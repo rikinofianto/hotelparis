@@ -6,7 +6,12 @@ if(!isset($_SESSION["user"]))
 }
 $_SESSION["menu_aktif"] = 'profit';
 ?>
+<?php
 
+function formatRupiah($angka) {
+    return "Rp. ".number_format(sprintf('%0.2f', preg_replace("/[^0-9.]/", "", $angka)),2);
+}
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -59,10 +64,10 @@ $_SESSION["menu_aktif"] = 'profit';
                     $query = "SELECT * FROM pembayaran";
                     $result = mysqli_query($con, $query);
                     $chart_data = '';
-                    $tot = '';
+                    $tot = 0;
                     while($row = mysqli_fetch_array($result))
                     {
-                     $chart_data .= "{ tanggal:'".$row["check_out"]."', keuntungan:".$row["fintot"] *10/100 ."}, ";
+                     $chart_data .= "{ tanggal:'".$row["check_out"]."', keuntungan: ".$row["fintot"] *10/100 ."}, ";
                      $tot = $tot + $row["fintot"] *10/100;
                     }
                     $chart_data = substr($chart_data, 0, -2);
@@ -114,11 +119,11 @@ $_SESSION["menu_aktif"] = 'profit';
                                                     <td>".$row['check_out']."</td>
 
 
-                                                    <td>Rp. ".$row['ttot']."</td>
-                                                    <td>Rp. ".$row['mepr']."</td>
-                                                    <td>Rp. ".$row['btot']."</td>
-                                                    <td>Rp. ".$row['fintot']."</td>
-                                                    <td>Rp. ".$row['fintot']*10/100 ."</td>
+                                                    <td>".formatRupiah($row['ttot'])."</td>
+                                                    <td>".formatRupiah($row['mepr'])."</td>
+                                                    <td>".formatRupiah($row['btot'])."</td>
+                                                    <td>".formatRupiah($row['fintot'])."</td>
+                                                    <td>".formatRupiah(intval($row['fintot'])*10/100) ."</td>
                                                     </tr>";
                                             }
                                             else
@@ -131,11 +136,11 @@ $_SESSION["menu_aktif"] = 'profit';
                                                     <td>".$row['check_out']."</td>
 
 
-                                                    <td>Rp. ".$row['ttot']."</td>
-                                                    <td>Rp. ".$row['mepr']."</td>
-                                                    <td>Rp. ".$row['btot']."</td>
-                                                    <td>Rp. ".$row['fintot']."</td>
-                                                    <td>Rp. ".$row['fintot']*10/100 ."</td>
+                                                    <td>".formatRupiah($row['ttot'])."</td>
+                                                    <td>".formatRupiah($row['mepr'])."</td>
+                                                    <td>".formatRupiah($row['btot'])."</td>
+                                                    <td>".formatRupiah($row['fintot'])."</td>
+                                                    <td>".formatRupiah(intval($row['fintot'])*10/100) ."</td>
                                                     </tr>";
 
                                             }

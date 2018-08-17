@@ -327,13 +327,13 @@
                 //echo "<script type='text/javascript'> window.location='home.php'</script>";
                 $type_of_room = 0;
                 if ($tipe_kamar=="Kamar Presiden") {
-                    $type_of_room = 4640000;//320$
+                    $type_of_room = 12000000;//320$
                 } elseif ($tipe_kamar=="Kamar Superior") {
-                    $type_of_room = 3190000;//220$
+                    $type_of_room = 1300000;//220$
                 } elseif ($tipe_kamar=="Kamar Keluarga") {
-                    $type_of_room = 2610000;//180$
+                    $type_of_room = 1800000;//180$
                 } elseif ($tipe_kamar=="Kamar Biasa") {
-                    $type_of_room = 2180000;//150$
+                    $type_of_room = 800000;//150$
                 }
 
                 if ($bed=="Single") {

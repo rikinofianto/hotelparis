@@ -1,4 +1,9 @@
+<?php
 
+function formatRupiah($angka) {
+    return "Rp. ".number_format(sprintf('%0.2f', preg_replace("/[^0-9.]/", "", $angka)),2);
+}
+?>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -198,20 +203,20 @@ tr:hover .cut { opacity: 1; }
 									$type_of_room = 0;
 									if($tipe_kamar=="Kamar Presiden")
 									{
-										$type_of_room = 320;
+										$type_of_room = 12000000;
 
 									}
 									else if($tipe_kamar=="Kamar Superior")
 									{
-										$type_of_room = 220;
+										$type_of_room = 1300000;
 									}
 									else if($tipe_kamar=="Kamar Keluarga")
 									{
-										$type_of_room = 180;
+										$type_of_room = 1800000;
 									}
 									else if($tipe_kamar=="Kamar Biasa")
 									{
-										$type_of_room = 150;
+										$type_of_room = 800000;
 									}
 
 									if($tipe_tempat_tidur=="Single")
@@ -291,23 +296,23 @@ tr:hover .cut { opacity: 1; }
 					<tr>
 						<td><span ><?php echo $tipe_kamar; ?></span></td>
 						<td><span ><?php echo $jml_hari; ?> </span></td>
-						<td><span data-prefix>$</span><span ><?php  echo $type_of_room;?></span></td>
+						<td><span ><?php  echo formatRupiah($type_of_room);?></span></td>
 						<td><span ><?php echo $jml_kamar;?> </span></td>
-						<td><span data-prefix>$</span><span><?php echo $ttot; ?></span></td>
+						<td><span><?php echo formatRupiah($ttot); ?></span></td>
 					</tr>
 					<tr>
 						<td><span ><?php echo $tipe_tempat_tidur; ?>  Bed </span></td>
 						<td><span ><?php echo $jml_hari; ?></span></td>
-						<td><span data-prefix>$</span><span ><?php  echo $type_of_bed;?></span></td>
+						<td><span ><?php  echo formatRupiah($type_of_bed);?></span></td>
 						<td><span ><?php echo $jml_kamar;?> </span></td>
-						<td><span data-prefix>$</span><span><?php echo $btot; ?></span></td>
+						<td><span><?php echo formatRupiah($btot); ?></span></td>
 					</tr>
 					<tr>
 						<td><span ><?php echo $makanan; ?>  </span></td>
 						<td><span ><?php echo $jml_hari; ?></span></td>
-						<td><span data-prefix>$</span><span ><?php echo $type_of_meal?></span></td>
+						<td><span ><?php echo formatRupiah($type_of_meal);?></span></td>
 						<td><span ><?php echo $jml_kamar;?> </span></td>
-						<td><span data-prefix>$</span><span><?php echo $mepr; ?></span></td>
+						<td><span><?php echo formatRupiah($mepr); ?></span></td>
 					</tr>
 				</tbody>
 			</table>
@@ -315,15 +320,15 @@ tr:hover .cut { opacity: 1; }
 			<table class="balance">
 				<tr>
 					<th><span >Total</span></th>
-					<td><span data-prefix>$</span><span><?php echo $fintot; ?></span></td>
+					<td><span><?php echo formatRupiah($fintot); ?></span></td>
 				</tr>
 				<tr>
 					<th><span >Jumlah yang dibayarkan</span></th>
-					<td><span data-prefix>$</span><span >0.00</span></td>
+					<td><span >0.00</span></td>
 				</tr>
 				<tr>
 					<th><span >Balance Due</span></th>
-					<td><span data-prefix>$</span><span><?php echo $fintot; ?></span></td>
+					<td><span><?php echo formatRupiah($fintot); ?></span></td>
 				</tr>
 			</table>
 		</article>

@@ -5,6 +5,9 @@ if(!isset($_SESSION["user"]))
  header("location:index.php");
 }
 $_SESSION["menu_aktif"] = 'payment';
+function formatRupiah($angka) {
+    return "Rp. ".number_format(sprintf('%0.2f', preg_replace("/[^0-9.]/", "", $angka)),2);
+}
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -89,10 +92,10 @@ $_SESSION["menu_aktif"] = 'payment';
                                                     <td>".$row['jml_kamar']."</td>
                                                     <td>".$row['makanan']."</td>
 
-                                                    <td>".$row['ttot']."</td>
-                                                    <td>".$row['mepr']."</td>
-                                                    <td>".$row['btot']."</td>
-                                                    <td>".$row['fintot']."</td>
+                                                    <td>".formatRupiah($row['ttot'])."</td>
+                                                    <td>".formatRupiah($row['mepr'])."</td>
+                                                    <td>".formatRupiah($row['btot'])."</td>
+                                                    <td>".formatRupiah($row['fintot'])."</td>
                                                     <td><a href=print.php?pid=".$id ." <button class='btn btn-primary'> <i class='fa fa-print' ></i> Cetak</button></td>
                                                     </tr>";
                                             }

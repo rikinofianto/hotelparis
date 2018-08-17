@@ -212,22 +212,14 @@ include('db.php')
                                     $data = mysqli_fetch_array($rs, MYSQLI_NUM);
                                     if($data[0] > 1) {
                                         echo "<script type='text/javascript'> alert('Pemesanan sudah ada')</script>";
-
-                                    }
-
-                                    else
-                                    {
+                                    } else {
                                         $new ="Tidak sesuai";
-                                        $newUser="INSERT INTO `pesan_kamar`(`gelar`, `nama_depan`, `nama_belakang`, `email`, `kewarganegaraan`, `negara`, `no_telp`, `tipe_kamar`, `Bed`, `jml_kamar`, `makanan`, `check_in`, `check_out`,`status`,`jml_hari`) VALUES ('$_POST[title]','$_POST[nama_depan]','$_POST[nama_belakang]','$_POST[email]','$_POST[nation]','$_POST[country]','$_POST[phone]','$_POST[tipe_kamar]','$_POST[bed]','$_POST[jml_kamar]','$_POST[meal]','$_POST[cin]','$_POST[cout]','$new',datediff('$_POST[cout]','$_POST[cin]'))";
-                                        if (mysqli_query($con,$newUser))
-                                        {
+                                        $newUser="INSERT INTO `pesan_kamar`(`gelar`, `nama_depan`, `nama_belakang`, `email`, `kewarganegaraan`, `negara`, `no_telp`, `tipe_kamar`, `tempat_tidur`, `jml_kamar`, `makanan`, `check_in`, `check_out`,`status`,`jml_hari`) VALUES ('$_POST[title]','$_POST[nama_depan]','$_POST[nama_belakang]','$_POST[email]','$_POST[nation]','$_POST[country]','$_POST[phone]','$_POST[tipe_kamar]','$_POST[bed]','$_POST[jml_kamar]','$_POST[meal]','$_POST[cin]','$_POST[cout]','$new',datediff('$_POST[cout]','$_POST[cin]'))";
+                                        if (mysqli_query($con,$newUser)) {
                                             echo "<script type='text/javascript'> alert('Pemesanan anda telah dikirim')</script>";
-
-                                        }
-                                        else
-                                        {
+                                        } else {
+                                            var_dump($con->error);exit;
                                             echo "<script type='text/javascript'> alert('Error, periksa sistem')</script>";
-
                                         }
                                     }
 
